@@ -1,0 +1,260 @@
+package tcs.com;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.AbstractMap;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map.Entry;
+import java.util.Scanner;
+
+import javax.swing.text.html.HTMLDocument.Iterator;
+
+
+
+public class Service {
+	
+	public static void main(String[] args) throws ParseException {
+	
+		Display();
+	}
+	
+	   
+	public static void Display() throws ParseException
+	{
+		System.out.println("Enter your choice");
+		System.out.println("1---Create");
+		System.out.println("2---read");
+		System.out.println("3---update");
+		System.out.println("4---delete");
+		Scanner sc=new Scanner(System.in);
+	    int a=sc.nextInt();
+	
+	Date d1=new Date(1996-12-21);
+	Date d2=new Date(1990-12-25);
+	
+	Behaviour bh=new Behaviour(1,21,"shreya",6786788,d1,(float) 25662.22);		
+	Behaviour bh1=new Behaviour(5,11,"kundan",6211288,d2,(float) 5313131.22);	
+	ArrayList<Behaviour>list=new ArrayList<Behaviour>();
+	list.add(bh);
+    list.add(bh1);
+    Behaviour[]arr=null;
+	
+	 if(a==1)
+	 {
+		 arr=Create(list);
+		 System.out.println("the newly created details are as follows:");
+		for(Behaviour c: arr)
+		{
+		System.out.println(c.getId()+" "+c.getAge()+" "+c.getName()+" "+c.getPhoneNo()+" "+c.getSalary()+" "+c.getDOB());
+			
+		}
+		Collections.addAll(list,arr);
+		System.out.println("the list contain following data:");
+	for(Behaviour c:list)
+	{
+		System.out.println(c.getId()+" "+c.getAge()+" "+c.getName()+" "+c.getPhoneNo()+" "+c.getSalary()+" "+c.getDOB());
+		
+	}
+	Display();
+		}
+		
+		else if(a==2)
+		{
+			
+				Read(list);
+				for(Behaviour c:list)
+				{
+					System.out.println(c.getId()+" "+c.getAge()+" "+c.getName()+" "+c.getPhoneNo()+" "+c.getSalary()+" "+c.getDOB());
+				
+				}
+			
+				Display();
+		}
+			
+		else if(a==3)
+		{
+		 Update(list);
+	     Display();	
+	     
+		}
+		else if(a==4)
+		{
+			Delete();
+			Display();
+			
+		}
+		else
+		{
+			System.out.println("invalid option:----Please feed in the correct option");
+			Display();
+		}
+	}
+
+	public  static ArrayList<Behaviour>Read(ArrayList<Behaviour> sh)
+	{
+		return sh;
+		
+	}
+	public static Behaviour[] Create(ArrayList<Behaviour> list) throws ParseException 
+	{
+		
+		Scanner sc=new Scanner(System.in);
+		System.out.println("enter the no of data to be inserted :");
+		int num=sc.nextInt();
+		System.out.println("enter the details in the following formats as specified:");
+		Behaviour[] newArray=new Behaviour[num];
+		ArrayList<Behaviour>arr=new ArrayList<Behaviour>();
+         for(int i=0;i<num;i++)
+         {
+        	 System.out.println("enter the id:");
+		int a=sc.nextInt();
+		System.out.println("enter the age:");
+		int age=sc.nextInt();
+		sc.nextLine();
+		System.out.println("enter the name:");
+		String name=sc.nextLine();
+		System.out.println("enter the phoneNo:");
+		long w=sc.nextLong();
+		sc.nextLine();
+		System.out.println("enter the date in the format---yyyy/mm/dd");
+		String date=sc.nextLine();
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy/mm/dd");
+		java.util.Date Dtae = sdf.parse(date);
+		/*SimpleDateFormat sdf1=new SimpleDateFormat("yyyy-mm-dd");
+		Date x=sdf1.format(Dtae);*/
+		System.out.println("enter the salary:");
+		float w1=sc.nextFloat();
+		newArray[i]=new Behaviour(a,age,name,w,Dtae,w1);
+          }
+         return newArray;
+		}	
+		
+		public static void Delete()
+		{
+			Scanner sc=new Scanner(System.in);
+			HashMap<Integer,Behaviour>map=new HashMap<>();
+			Date d1=new Date(1996-12-21);
+			Date d2=new Date(1990-12-25);
+			Behaviour bh=new Behaviour(1,21,"shreya",6786788,d1,(float) 25662.22);		
+			Behaviour bh1=new Behaviour(5,11,"kundan",6211288,d2,(float) 5313131.22);
+			ArrayList<Behaviour>array=new ArrayList<Behaviour>();
+			array.add(bh);
+			array.add(bh1);
+			map.put( bh.getId(), bh);
+			map.put(bh1.getId(),bh1);
+			System.out.println("enter the id you want to delete:");
+			int id=sc.nextInt();
+			for(java.util.Iterator<Entry<Integer, Behaviour>> it = map.entrySet().iterator(); 
+			it.hasNext(); ) 
+			{
+			    HashMap.Entry<Integer, Behaviour> entry = it.next();
+			    if(entry.getKey()==(id))
+			    {
+			        it.remove();
+			    }
+			
+			    else
+			    {
+			    	System.out.println("id does not exits----");
+			    }
+			}
+			
+		    
+		
+			
+			for(HashMap.Entry<Integer,Behaviour>X:map.entrySet())
+			{
+			Behaviour c=X.getValue();
+			
+			System.out.println(c.getId()+" "+c.getAge()+" "+c.getName()+" "+c.getPhoneNo()+" "+c.getSalary()+" "+c.getDOB());
+			}
+			}
+		@SuppressWarnings("unchecked")
+		public static void Update(ArrayList<Behaviour> list) throws ParseException 
+		{
+			
+
+			Scanner sc=new Scanner(System.in);
+			HashMap<Integer,Behaviour>map=new HashMap<>();
+			Date d1=new Date(1996-12-21);
+			Date d2=new Date(1990-12-25);
+			System.out.println("enter the no of data u want to update for:");
+			int num=sc.nextInt();
+			Behaviour newArray=null;
+			Behaviour bh=new Behaviour(1,21,"shreya",6786788,d1,(float) 25662.22);		
+			Behaviour bh1=new Behaviour(5,11,"kundan",6211288,d2,(float) 5313131.22);
+			ArrayList<Behaviour>array=new ArrayList<Behaviour>();
+			array.add(bh);
+			array.add(bh1);
+			map.put( bh.getId(), bh);
+			map.put(bh1.getId(),bh1);
+			
+			
+			System.out.println("enter the id  for which you want to update the data:");
+			int id=sc.nextInt();
+			for(int i=0;i<num;i++)
+			{
+			System.out.println("enter the age");
+			int age=sc.nextInt();
+			sc.nextLine();
+			System.out.println("enter the name:");
+			String name=sc.nextLine();
+			System.out.println("enter the phoneNo:");
+			long w=sc.nextLong();
+			sc.nextLine();
+			System.out.println("enter the date in the format---yyyy/mm/dd");
+			String date=sc.nextLine();
+			SimpleDateFormat sdf=new SimpleDateFormat("yyyy/mm/dd");
+			java.util.Date Dtae = sdf.parse(date);
+			/*SimpleDateFormat sdf1=new SimpleDateFormat("yyyy-mm-dd");
+			Date x=sdf1.format(Dtae);*/
+			System.out.println("enter the salary:");
+			float w1=sc.nextFloat();
+			
+			newArray=new Behaviour(id,age,name,w,Dtae, w1);
+			}
+			
+			
+			
+			
+			for(java.util.Iterator<Entry<Integer, Behaviour>> it = map.entrySet().iterator(); 
+					it.hasNext(); ) 
+					{
+					    HashMap.Entry<Integer, Behaviour> entry = it.next();
+					    if(entry.getKey()==(id))
+					    {
+					    	System.out.println(entry.getKey());
+					    	Behaviour c=entry.getValue();
+					    	 map.replace(entry.getKey(),newArray);
+					    	
+					    	
+							}}
+			
+			for(HashMap.Entry<Integer,Behaviour>X:map.entrySet())
+			{
+			Behaviour c=X.getValue();
+			
+			System.out.println(c.getId()+" "+c.getAge()+" "+c.getName()+" "+c.getPhoneNo()+" "+c.getSalary()+" "+c.getDOB());
+			}
+			}
+		
+		
+		
+		
+}
+
+		
+			
+			
+			
+			
+		
+		
+	
+	
+	
+
