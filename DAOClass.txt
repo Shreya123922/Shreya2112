@@ -1,0 +1,125 @@
+package tcs.com;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+
+public class DaoClass implements Interface1 {
+	ArrayList<Behaviour>arr=new ArrayList<Behaviour>();
+
+	@Override
+	public Behaviour[] create( int num,ArrayList<Behaviour> list) throws ParseException {
+		Behaviour[] arr=new Behaviour[num];
+		Scanner sc=new Scanner(System.in);
+		 for(int i=0;i<num;i++)
+         {
+        	 System.out.println("enter the id:");
+		int a=sc.nextInt();
+		System.out.println("enter the age:");
+		int age=sc.nextInt();
+		sc.nextLine();
+		System.out.println("enter the name:");
+		String name=sc.nextLine();
+		System.out.println("enter the phoneNo:");
+		long w=sc.nextLong();
+		sc.nextLine();
+		System.out.println("enter the date in the format---yyyy/mm/dd");
+		String date=sc.nextLine();
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy/mm/dd");
+		java.util.Date Dtae = sdf.parse(date);
+		/*SimpleDateFormat sdf1=new SimpleDateFormat("yyyy-mm-dd");
+		Date x=sdf1.format(Dtae);*/
+		System.out.println("enter the salary:");
+		float w1=sc.nextFloat();
+		arr[i]=new Behaviour(a,age,name,w,Dtae,w1);
+          }
+         return arr;
+		}	
+		
+		
+
+
+	@Override
+	public ArrayList<Behaviour> read(ArrayList<Behaviour> list) {
+		
+	return list;	
+	}
+
+	@Override
+	public int update(int id, ArrayList<Behaviour> list) throws ParseException {
+		Scanner sc=new Scanner(System.in);
+		Behaviour newArray=null;
+		for(int i=0;i<list.size();i++)
+		{
+			Behaviour obj=list.get(i);
+			
+		
+			if(id==obj.getId())
+			{
+				for(int j=0;j<1;j++)
+				{
+				System.out.println("enter the age");
+				int age=sc.nextInt();
+				sc.nextLine();
+				System.out.println("enter the name:");
+				String name=sc.nextLine();
+				System.out.println("enter the phoneNo:");
+				long w=sc.nextLong();
+				sc.nextLine();
+				System.out.println("enter the date in the format---yyyy/mm/dd");
+				String date=sc.nextLine();
+				SimpleDateFormat sdf=new SimpleDateFormat("yyyy/mm/dd");
+				java.util.Date Dtae = sdf.parse(date);
+				/*SimpleDateFormat sdf1=new SimpleDateFormat("yyyy-mm-dd");
+				Date x=sdf1.format(Dtae);*/
+				System.out.println("enter the salary:");
+				float w1=sc.nextFloat();
+				
+				newArray=new Behaviour(id,age,name,w,Dtae, w1);
+				}
+			list.set(i,newArray);
+			
+				
+			}
+			
+			
+		}
+		return 1;
+		}
+		
+		
+		
+		
+	
+
+	@Override
+	public int delete( int id,ArrayList <Behaviour>list)
+	{
+		
+		ArrayList<Behaviour> arr=new ArrayList<Behaviour>();
+		Behaviour[]newArray=new Behaviour[1];
+		
+		for(int i=0;i<list.size();i++)
+		{
+			Behaviour newId=list.get(i);//object storing
+			if(id==newId.getId())
+			{
+				
+				list.remove(i);
+			}
+		}
+		return 1;
+		
+	
+		
+	}
+
+
+
+
+	
+
+}
+

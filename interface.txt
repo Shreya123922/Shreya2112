@@ -1,0 +1,13 @@
+package tcs.com;
+
+import java.text.ParseException;
+import java.util.ArrayList;
+
+public interface Interface1 {
+	public Behaviour[] create( int num,ArrayList<Behaviour>list) throws ParseException;
+	public ArrayList<Behaviour> read(ArrayList<Behaviour> list) ;
+	public int update( int id,ArrayList<Behaviour> list) throws ParseException ;
+	public int delete( int id,ArrayList<Behaviour> list) ;
+	
+
+}

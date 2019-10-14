@@ -1,0 +1,126 @@
+package tcs.com;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.Scanner;
+
+
+
+public class Service1{
+	public static void main(String[] args) throws ParseException
+	{
+		
+		Display();
+		
+		
+		}
+	
+
+	private static void Display() throws ParseException {
+		System.out.println("Enter your choice");
+		System.out.println("1---Create");
+		System.out.println("2---read");
+		System.out.println("3---update");
+		System.out.println("4---delete");
+		Scanner sc=new Scanner(System.in);
+	    int a=sc.nextInt();
+		Date d1=new Date(1996-12-21);
+		Date d2=new Date(1990-12-25);
+		Date d3=new Date(1998-2-8);
+		
+		Behaviour bh=new Behaviour(1,21,"shreya",6786788,d1,(float) 25662.22);		
+		Behaviour bh1=new Behaviour(5,11,"kundan",6211288,d2,(float) 5313131.22);	
+		Behaviour bh2=new Behaviour(8,78,"Aayush",86532,d3,(float)84651.15);
+		ArrayList<Behaviour>list=new ArrayList<Behaviour>();
+		DaoClass obj=new DaoClass();
+		list.add(bh);
+	    list.add(bh1);
+	    list.add(bh2);
+	    Behaviour[]arr=null;
+	    if(a==1)
+		 {
+			 Scanner sc1=new Scanner(System.in);
+			 System.out.println("enter the no of data you want to insert----");
+			 int num=sc.nextInt();
+			 arr=obj.create(num,list);
+			 System.out.println("the newly created details are as follows:");
+			for(Behaviour c: arr)
+			{
+			System.out.println(c.getId()+" "+c.getAge()+" "+c.getName()+" "+c.getPhoneNo()+" "+c.getSalary()+" "+c.getDOB());
+				
+			}
+			Collections.addAll(list,arr);
+			System.out.println("the list contain following data:");
+		for(Behaviour c:list)
+		{
+			System.out.println(c.getId()+" "+c.getAge()+" "+c.getName()+" "+c.getPhoneNo()+" "+c.getSalary()+" "+c.getDOB());
+			
+		}
+		Display();
+			}
+			
+			else if(a==2)
+			{
+				
+					obj.read(list);
+					for(Behaviour c:list)
+					{
+						System.out.println(c.getId()+" "+c.getAge()+" "+c.getName()+" "+c.getPhoneNo()+" "+c.getSalary()+" "+c.getDOB());
+					
+					}
+				
+					Display();
+			}
+				
+			else if(a==3)
+			{
+				Scanner sc1=new Scanner(System.in);
+				for(Behaviour c:list)
+				{
+					System.out.println(c.getId()+" "+c.getAge()+" "+c.getName()+" "+c.getPhoneNo()+" "+c.getSalary()+" "+c.getDOB());
+				}
+				System.out.println("enter the id for which you want to update the data for---");
+				int id=sc1.nextInt();
+			   int flag=obj.update(id,list);
+			   if(flag==1)
+			   {
+				   for(Behaviour c:list)
+				   System.out.println(c.getId()+" "+c.getAge()+" "+c.getName()+" "+c.getPhoneNo()+" "+c.getSalary()+" "+c.getDOB());
+			   }
+		     Display();	
+		     
+			}
+			else if(a==4)
+			{
+				Scanner sc1=new Scanner(System.in);
+				System.out.println("enter the id you want to delete for---");
+				int id=sc1.nextInt();
+			
+				 int flag=obj.delete(id,list);
+				 if(flag==1)
+				 {
+					 System.out.println("removed successfully");
+					 for(Behaviour c:list)
+					 {
+						 System.out.println(c.getId()+" "+c.getAge()+" "+c.getName()+" "+c.getPhoneNo()+" "+c.getSalary()+" "+c.getDOB());
+					 }
+				 }
+				Display();
+				
+			}
+			else
+			{
+				System.out.println("invalid option:----Please feed in the correct option");
+				Display();
+			}
+		
+		
+		
+	}
+
+
+
+}
